@@ -1,7 +1,5 @@
 FROM node:18
 
-USER root
-
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
@@ -14,6 +12,8 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install Pillow requests --break-system-packages
 
 RUN npm install -g n8n
+
+RUN mkdir -p /home/node/.n8n && chown -R node:node /home/node/.n8n
 
 USER node
 
